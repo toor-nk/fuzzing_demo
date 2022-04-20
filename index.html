@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/gh/deltoss/d3-mitch-tree@1.0.2/dist/js/d3-mitch-tree.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/deltoss/d3-mitch-tree@1.0.2/dist/css/d3-mitch-tree.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/deltoss/d3-mitch-tree@1.0.2/dist/css/d3-mitch-tree-theme-default.min.css">
+    </head>
+    <body>
+        <section id="visualisation">
+        </section>
+
+        <script>
+            var data = [
+                {
+                    "id": 1,
+                    "name": "Fuzzing NooB",
+                    "type": "Root",
+                    "description": "Congrats on taking the first step to Code quality and robustness!"
+                    
+                    
+                },
+                {
+                    "id": 2,
+                    "parentId": 1,
+                    "name": "Fuzzing Support Forum",
+                    "type": "Type",
+                    "description": "Contact us for resources" 
+                
+                   
+                },
+                {
+                    "id": 3,
+                    "parentId": 2,
+                    "name": "Fuzzing CoP teams",
+                    "type": "Postit",
+                    "description": "Click&contact us @Teams",
+                   },
+                {
+                    "id": 4,
+                    "parentId": 2,
+                    "name": "Fuzzing CoP",
+                    "type": "Intel Blue site",
+                    "description": "Visit CoP Blue site"
+                },
+                {
+                    "id": 6,
+                    "parentId": 1,
+                    "name": "Fuzzing Resources",
+                    "type": "Type",
+                    "description": "Find your BKMS"
+                },
+                {
+                    "id": 7,
+                    "parentId": 6,
+                    "name": "Language Specific",
+                    "type": "Fuzzing Classification",
+                    "description": "Choose the Fuzzer based on programming language"
+                },
+                {
+                    "id": 8,
+                    "parentId": 7,
+                    "name": "C/C++",
+                    "type": "Popular Fuzzers",
+                    "description": "C/C++ language based fuzzers"
+                },
+                {
+                    "id": 80,
+                    "parentId": 8,
+                    "name": "AFL++",
+                    "type": "C Fuzzers",
+                    "description": "Coverage guided, Mutation based"
+                },
+                {
+                "id": 81,
+                    "parentId": 8,
+                    "name": "libfuzzer",
+                    "type": "C Fuzzers",
+                    "description": "In-process fuzzer targeting userspace libary APIs."
+                },
+                 {
+                    "id": 9,
+                    "parentId": 7,
+                    "name": "Java",
+                    "type": "Popular Fuzzers",
+                    "description": "Java language based fuzzers"
+                },
+                  {
+                    "id": 90,
+                    "parentId": 9,
+                    "name": "Jazzer",
+                    "type": "Java Fuzzers",
+                    "description": "coverage-guided, in-process fuzzer for the JVM platform"
+                },
+                  {
+                    "id": 91,
+                    "parentId": 9,
+                    "name": "Javafuzz",
+                    "type": "Java Fuzzers",
+                    "description": "coverage-guided fuzzer for testing Java packages."
+                },
+                  {
+                    "id": 92,
+                    "parentId": 9,
+                    "name": "JQF",
+                    "type": "Java Fuzzers",
+                    "description": "Feedback-directed fuzz testing platform for Java (think: AFL/LibFuzzer but for JVM bytecode)."
+                },
+                {
+                    "id": 10,
+                    "parentId": 7,
+                    "name": "C#",
+                    "type": "Popular Fuzzers",
+                    "description": "C sharplanguage based fuzzers"
+                },
+                 {
+                    "id": 100,
+                    "parentId": 10,
+                    "name": "Sharpfuzz",
+                    "type": "Popular Fuzzers",
+                    "description": "Coverage guided, Mutation based"
+                },
+                   {
+                    "id": 11,
+                    "parentId": 7,
+                    "name": "Python",
+                    "type": "Popular Fuzzers",
+                    "description": "Python language based fuzzers"
+                },
+                
+                {
+                    "id": 110,
+                    "parentId": 11,
+                    "name": "Atheris",
+                    "type": "Python Fuzzers",
+                    "description": "coverage-guided Python fuzzing engine"
+                },
+                {
+                    "id": 111,
+                    "parentId": 11,
+                    "name": "Python-AFL",
+                    "type": "Popular Fuzzers",
+                    "description": "Experimental module that enables American Fuzzy Lop fork server and instrumentation for pure-Python code."
+                },
+                {
+                    "id": 12,
+                    "parentId": 6,
+                    "name": "Project Specific",
+                    "type": "Fuzzing Classification",
+                    "description": "Choose the Fuzzer based on target"
+                },
+                
+                {
+                    "id": 13,
+                    "parentId": 12,
+                    "name": "Ring 0",
+                    "type": "Fuzzing Classification",
+                    "description": "Kernel level Fuzzing"
+                },
+                 {
+                    "id": 130,
+                    "parentId": 13,
+                    "name": "Linux",
+                    "type": "OS Classification",
+                    "description": "Kernel level Fuzzing"
+                },
+                 {
+                    "id": 1300,
+                    "parentId": 130,
+                    "name": "KFX",
+                    "type": "OS Classification",
+                    "description": "Kernel level Fuzzing"
+                },
+                {
+                    "id": 1301,
+                    "parentId": 130,
+                    "name": "KAFL",
+                    "type": "OS Classification",
+                    "description": "Kernel level Fuzzing"
+                },
+                 {
+                    "id": 1302,
+                    "parentId": 130,
+                    "name": "Syzkaller",
+                    "type": "OS Classification",
+                    "description": "Kernel level Fuzzing-Syscalls"
+                },
+                {
+                    "id": 13020,
+                    "parentId": 1302,
+                    "name": "Syzscope",
+                    "type": "OS Classification",
+                    "description": "Kernel level Fuzzing, Syscalls"
+                },
+                 {
+                    "id": 1303,
+                    "parentId": 130,
+                    "name": "Trinity",
+                    "type": "OS Classification",
+                    "description": "Kernel level Fuzzing- Syscalls"
+                },
+                  {
+                    "id": 131,
+                    "parentId": 13,
+                    "name": "Windows",
+                    "type": "OS Classification",
+                    "description": "Kernel level Fuzzing"
+                },
+                {
+                    "id": 1310,
+                    "parentId": 131,
+                    "name": "Windows drivers",
+                    "type": "OS Classification",
+                    "description": "https://intel.sharepoint.com/sites/SecurityProductAssuranceInitiativesSAI/SitePages/Fuzzing-Strategy-%26-Approaches.aspx"
+                },
+                
+                {
+                    "id": 14,
+                    "parentId": 12,
+                    "name": "Ring 3",
+                    "type": "Fuzzing Classification",
+                    "description": "Userland Fuzzing"
+                },
+                 {
+                    "id": 140,
+                    "parentId": 14,
+                    "name": "AFL++",
+                    "type": "Fuzzing Classification",
+                    "description": "Userland Fuzzing"
+                },
+                 {
+                    "id": 141,
+                    "parentId": 14,
+                    "name": "Radamsa",
+                    "type": "Fuzzing Classification",
+                    "description": "Userland Fuzzing"
+                },
+                {
+                    "id": 142,
+                    "parentId": 14,
+                    "name": "libfuzzer",
+                    "type": "Fuzzing Classification",
+                    "description": "Userland Fuzzing"
+                },
+                {
+                    "id": 143,
+                    "parentId": 14,
+                    "name": "peach",
+                    "type": "Fuzzing Classification",
+                    "description": "Generation and Mutation Based Fuzzing"
+                },
+                {
+                    "id": 15,
+                    "parentId": 12,
+                    "name": "Firmware",
+                    "type": "Fuzzing Classification",
+                    "description": "Firmware Fuzzing"
+                },
+                 {
+                    "id": 150,
+                    "parentId": 15,
+                    "name": "chipsec",
+                    "type": "Fuzzing Classification",
+                    "description": "Firmware Fuzzing"
+                },
+                
+                    
+                {
+                    "id": 16,
+                    "parentId": 12,
+                    "name": "Hardware",
+                    "type": "Fuzzing Classification",
+                    "description": "Hardware Fuzzing"
+                },
+                  {
+                    "id": 160,
+                    "parentId": 16,
+                    "name": "Reviozer",
+                    "type": "Fuzzing Classification",
+                    "description": "Microarchitecture Fuzzing"
+                },
+                {
+                    "id": 161,
+                    "parentId": 16,
+                    "name": "theRealSIPfuzzer",
+                    "type": "Fuzzing Classification",
+                    "description": "Hardware Fuzzing"
+                },
+                {
+                    "id": 17,
+                    "parentId": 12,
+                    "name": "Misc",
+                    "type": "Fuzzing Classification",
+                    "description": "Those weird corner cases"
+             }
+            ];
+            	
+
+          var treePlugin = new d3.mitchTree.boxedTree()
+                .setIsFlatData(true)
+                .setData(data)
+                .setElement(document.getElementById("visualisation"))
+                .setIdAccessor(function(data) {
+                    return data.id;
+                })
+                .setParentIdAccessor(function(data) {
+                    return data.parentId;
+                })
+                .setBodyDisplayTextAccessor(function(data) {
+                    return data.description;
+                })
+                .setTitleDisplayTextAccessor(function(data) {
+                    return data.name;
+                       })
+                    
+  .on("nodeClick", function(event) {
+    if (event.data.id == 3) {
+        event.continue = false;
+        window.open('https://teams.microsoft.com/l/team/19%3azZejY1o0IyHa63vwsxBmsV89mQ9EAnd0wFKBtnCHh7E1%40thread.tacv2/conversations?groupId=7e3395e6-67fc-4c2b-a583-2c534599aaa6&tenantId=46c98d88-e344-4ed4-8496-4ed7712e255d','_blank');
+    } else if (event.data.id == 4) {
+        event.continue = false;
+        window.open('https://intel.sharepoint.com/sites/fuzzing','_blank');
+    }
+    else if (event.data.id == 80) {
+        event.continue = false;
+        window.open('https://github.com/neelkrish/documentation.practices.security.fuzzing/blob/master/markdown/AFLplusplus.md','_blank');
+    }
+    else if (event.data.id == 81) {
+        event.continue = false;
+        window.open('https://github.com/intel-innersource/documentation.practices.security.fuzzing/blob/master/markdown/LibFuzzer.md','_blank');
+    }
+    else if (event.data.id == 90) {
+        event.continue = false;
+        window.open('https://github.com/CodeIntelligenceTesting/jazzer','_blank');
+    }
+    else if (event.data.id == 91) {
+        event.continue = false;
+        window.open('https://github.com/fuzzitdev/javafuzz','_blank');
+    }
+    else if (event.data.id == 92) {
+        event.continue = false;
+        window.open('https://github.com/rohanpadhye/JQF','_blank');
+    }
+     else if (event.data.id == 100) {
+        event.continue = false;
+        window.open('https://github.com/Metalnem/sharpfuzz','_blank');
+    }
+    else if (event.data.id == 110) {
+        event.continue = false;
+        window.open('https://github.com/google/atheris','_blank');
+    }
+    else if (event.data.id == 111) {
+        event.continue = false;
+        window.open('https://github.com/jwilk/python-afl','_blank');
+    }
+    else if (event.data.id == 111) {
+        event.continue = false;
+        window.open('https://github.com/jwilk/python-afl','_blank');
+    }
+    else if (event.data.id == 1300) {
+        event.continue = false;
+        window.open('https://github.com/intel/kernel-fuzzer-for-xen-project','_blank');
+    }
+    else if (event.data.id == 1301) {
+        event.continue = false;
+        window.open('https://github.com/IntelLabs/kAFL','_blank');
+    }
+    else if (event.data.id == 1302) {
+        event.continue = false;
+        window.open('https://github.com/google/syzkaller/','_blank');
+    }
+    else if (event.data.id == 13020) {
+        event.continue = false;
+        window.open('https://github.com/plummm/SyzScope/','_blank');
+       }
+    else if (event.data.id == 1303) {
+        event.continue = false;
+        window.open('https://github.com/kernelslacker/trinity','_blank');
+       }
+    else if (event.data.id == 1310) {
+        event.continue = false;
+        window.open('https://intel.sharepoint.com/sites/SecurityProductAssuranceInitiativesSAI/SitePages/Fuzzing-Strategy-%26-Approaches.aspx','_blank');
+       }
+    else if (event.data.id == 140) {
+        event.continue = false;
+        window.open('https://github.com/neelkrish/documentation.practices.security.fuzzing/blob/master/markdown/AFLplusplus.md','_blank');
+       }
+    else if (event.data.id == 141) {
+        event.continue = false;
+        window.open('https://github.com/intel-innersource/documentation.practices.security.fuzzing/blob/master/markdown/Radamsa.md','_blank');
+       }
+    else if (event.data.id == 142) {
+        event.continue = false;
+        window.open('https://github.com/intel-innersource/documentation.practices.security.fuzzing/blob/master/markdown/LibFuzzer.md','_blank');
+       }
+    else if (event.data.id == 143) {
+        event.continue = false;
+        window.open('https://gitlab.devtools.intel.com/otc-security/validation/-/blob/master/howto/Peach%20Fuzzer%20on%20Clearlinux%20OS/README.md','_blank');
+       }
+     else if (event.data.id == 150) {
+        event.continue = false;
+        window.open('https://goto/chipsec','_blank');
+       }
+     else if (event.data.id == 160) {
+        event.continue = false;
+        window.open('https://github.com/hw-sw-contracts/revizor','_blank');
+       }
+     else if (event.data.id == 161) {
+        event.continue = false;
+        window.open('https://wiki.ith.intel.com/display/IPG/theRealSIPfuzzer','_blank');
+       }
+      })
+                
+        .initialize();
+            
+                            
+        </script>
+    </body>
+</html>
