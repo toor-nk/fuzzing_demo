@@ -8,8 +8,19 @@
         <script src="https://cdn.jsdelivr.net/gh/deltoss/d3-mitch-tree@1.0.2/dist/js/d3-mitch-tree.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/deltoss/d3-mitch-tree@1.0.2/dist/css/d3-mitch-tree.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/deltoss/d3-mitch-tree@1.0.2/dist/css/d3-mitch-tree-theme-default.min.css">
+   <style>
+   div {
+ max-width: 100%;
+ max-height: 100vh;
+ height: auto;
+
+ 
+}
+</style>
+
     </head>
     <body>
+    <div>
         <section id="visualisation">
         </section>
 
@@ -317,6 +328,7 @@
                        })
                     
   .on("nodeClick", function(event) {
+  
     if (event.data.id == 3) {
         event.continue = false;
         window.open('https://teams.microsoft.com/l/team/19%3azZejY1o0IyHa63vwsxBmsV89mQ9EAnd0wFKBtnCHh7E1%40thread.tacv2/conversations?groupId=7e3395e6-67fc-4c2b-a583-2c534599aaa6&tenantId=46c98d88-e344-4ed4-8496-4ed7712e255d','_blank');
@@ -418,5 +430,6 @@
             
                             
         </script>
+        </div>
     </body>
 </html>
